@@ -1,24 +1,16 @@
 import React from 'react';
-import './ChallengePage.css';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import ProductList from './components/product-list/ProductList';
 
-function ChallengePage() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const queryClient = new QueryClient();
+
+function ChallengePage(): React.JSX.Element {
+	return (
+		<QueryClientProvider client={queryClient}>
+			<ProductList/>
+			{/*<SideMenu/>*/}
+		</QueryClientProvider>
+	);
 }
 
 export default ChallengePage;
