@@ -1,18 +1,33 @@
+.hidden {
+    display: none;
+}
+
 .pageHeader {
-    display: flex;
-    padding: 8px 24px;
-    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    height: 80px;
     border-bottom: 4px solid black;
     background-color: burlywood;
+}
+
+.headerFlexSpace {
+    display: flex;
+    justify-content: space-between;
 }
 
 .pageTitle {
     text-align: center;
     font-size: 32px;
-    line-height: 40px;
+    line-height: 64px;
+    margin: 8px;
 }
 
-.listToggleButton {
+.buttonsContainer {
+    width: 200px;
+    margin: 8px;
+}
+
+.listToggleViewButton {
     width: 200px;
     height: 50%;
     font-size: 12px;
@@ -22,11 +37,36 @@
     background-color: gold;
 }
 
-.listToggleButton:hover {
+.listToggleViewButton:hover {
     cursor: pointer;
     background-color: darkgoldenrod;
 }
 
 .pageContent {
-    padding: 8px 8px
+    padding-top: 84px
 }
+
+.sidebarMargin {
+    margin-right: 300px;
+}
+
+.sideBarWrapper {
+    position: fixed;
+    right: 0;
+    height: 100%;
+    width: 300px;
+    border-left: 2px solid black;
+}
+
+.mobileCartBackBUtton {
+    all: unset;
+    font-size: 24px;
+    position: absolute;
+    height: 100%;
+    left: 8px;
+}
+
+.mobileCartBackBUtton:hover {
+    cursor: pointer;
+}
+

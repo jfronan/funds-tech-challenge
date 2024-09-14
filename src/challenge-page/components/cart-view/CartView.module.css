@@ -1,0 +1,14 @@
+.cartContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+}
+
+.reverseOrder {
+    flex-direction: column-reverse;
+}
+
+.cartListWrapper {
+    min-height: 90%;
+}
