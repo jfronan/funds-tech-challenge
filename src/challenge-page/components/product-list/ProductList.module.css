@@ -1,8 +1,32 @@
-.loadingMessage {
-    font-size: 24px;
-    line-height: 32px;
+.pageHeader {
+    display: flex;
+    padding: 8px 24px;
+    justify-content: space-between;
+    border-bottom: 4px solid black;
+    background-color: burlywood;
 }
 
-.genericBorder {
-    border: 1px solid black;
+.pageTitle {
+    text-align: center;
+    font-size: 32px;
+    line-height: 40px;
+}
+
+.listToggleButton {
+    width: 200px;
+    height: 50%;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: bold;
+    padding: 8px;
+    background-color: gold;
+}
+
+.listToggleButton:hover {
+    cursor: pointer;
+    background-color: darkgoldenrod;
+}
+
+.pageContent {
+    padding: 8px 8px
 }

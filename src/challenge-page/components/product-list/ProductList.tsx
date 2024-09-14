@@ -1,26 +1,44 @@
-import React from 'react';
-import { useQuery } from 'react-query';
+import React, { useState } from 'react';
 import styles from './ProductList.module.css';
-import { getAllGroceries } from '../../adapters/api-adapter';
+import { PRODUCT_LIST_TYPES } from '../../enums/product-list-types';
+import AllGroceriesList from './AllGroceriesList/AllGroceriesList';
+import AllFavoritesList from './AllFavoritesList/AllFavoritesList';
 
 function ProductList(): React.JSX.Element {
-    const { data: groceries, isLoading } = useQuery({
-        queryFn: getAllGroceries,
-        queryKey: ['groceries']
-    })
+    const [productListType, setProductListType] = useState(PRODUCT_LIST_TYPES.ALL_PRODUCTS);
 
-    if (isLoading) {
-        return <div className={styles.loadingMessage}>Loading Products...</div>
+    const listTypeByProductListType = {
+        [PRODUCT_LIST_TYPES.ALL_PRODUCTS]: <AllGroceriesList/>,
+        [PRODUCT_LIST_TYPES.FAVORITES]: <AllFavoritesList/>,
+    }
+
+    const toggleListType = () => {
+        switch (productListType) {
+            case PRODUCT_LIST_TYPES.ALL_PRODUCTS:
+                setProductListType(PRODUCT_LIST_TYPES.FAVORITES);
+                break;
+            case PRODUCT_LIST_TYPES.FAVORITES:
+                setProductListType(PRODUCT_LIST_TYPES.ALL_PRODUCTS);
+                break;
+            default:
+                setProductListType(PRODUCT_LIST_TYPES.ALL_PRODUCTS);
+        }
     }
 
 	return (
 		<>
-            {groceries?.map((product) => {
-                return <div key={product.id} className={styles.genericBorder}>
-                    <span>{product.productName}</span>
-                    <span>{product.stock}</span>
-                </div>
-            })}
+            <header className={styles.pageHeader}>
+                <h1 className={styles.pageTitle}>
+                    {productListType === PRODUCT_LIST_TYPES.ALL_PRODUCTS ? 'Product List' : 'Favorites! <3'}
+                </h1>
+                <button className={styles.listToggleButton} onClick={toggleListType}>
+                    {productListType === PRODUCT_LIST_TYPES.ALL_PRODUCTS ? 'Check your favorite products!' : 'Go back to product listing'}
+                </button>
+            </header>
+            <div className={styles.pageContent}>
+                {listTypeByProductListType[productListType]}
+            </div>
+
         </>
 	);
 }
