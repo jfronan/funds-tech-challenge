@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useReducer, useState } from 'react';
+import React, { useMemo, useReducer, useState } from 'react';
 import styles from './ProductList.module.css';
 import { PRODUCT_LIST_TYPES } from '../../enums/product-list-types';
 import AllGroceriesList from './AllGroceriesList/AllGroceriesList';
@@ -10,7 +10,7 @@ import { ManageCartContext } from '../../contexts/manage-cart-context';
 
 
 function ProductList(): React.JSX.Element {
-    const isMobile: boolean = useContext(DeviceContext);
+    const isMobile: boolean = React.useContext(DeviceContext);
     const [cartState, cartDispatch] = useReducer(manageCartReducer, manageCartInitialState);
     const reducerContextStateProvider = {
         cartState,

@@ -8,6 +8,9 @@ Inside the challenge_docs folder the excesice can be found reading the README fi
 First, go inside challenge_docs folder and follow the README, to get an instance of the backend api running (shoould run in port 3000).
 After that go back to this root directory and run 'npm install' and then 'npm run start', this should automatically initialize the app in port 3001 and open your default browser there.
 
+## Testing?
+With 'npm run test', jest test suites can be run. Sadly I could not develop as many test cases as I would have liked to...
+
 __________________________________________________________________________________________________
 
 For more context, this app tempalte was an original create of create-react-app. Here's some basic information about it:
