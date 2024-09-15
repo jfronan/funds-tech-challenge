@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import styles from './ProductInfiniteScroll.module.css';
 import { PRODUCTS_PER_PAGE } from '../../adapters/api-adapter';
@@ -7,7 +7,7 @@ import ProductCard from '../product-card/ProductCard';
 import Product from '../../interfaces/Product';
 
 interface Props {
-	getProductsFunction: (page: number) => Promise<Product[]>
+	getProductsFunction: (page: number) => Promise<Product[]>,
 }
 
 const ProductInfiniteScroll: React.FunctionComponent<Props> = (props) => {
@@ -16,6 +16,7 @@ const ProductInfiniteScroll: React.FunctionComponent<Props> = (props) => {
 		data: groceriesPages,
 		fetchNextPage,
 		hasNextPage,
+		remove,
 		isFetchingNextPage,
 		status,
 	} = useInfiniteQuery({
@@ -25,6 +26,10 @@ const ProductInfiniteScroll: React.FunctionComponent<Props> = (props) => {
 			return lastPage?.length !== 0 ? pages.length + 1 : undefined
 		},
 	})
+
+	useEffect(()=>{
+		return () => { remove() }
+	}, [remove])
 
 	const groceries = useMemo(() => groceriesPages?.pages.reduce((prev, page) => {
 		return [...prev, ...page]

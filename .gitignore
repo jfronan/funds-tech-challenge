@@ -2,6 +2,7 @@
 
 # dependencies
 node_modules
+db_backup
 /.pnp
 .pnp.js
 

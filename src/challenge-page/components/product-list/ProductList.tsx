@@ -1,14 +1,22 @@
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useContext, useMemo, useReducer, useState } from 'react';
 import styles from './ProductList.module.css';
 import { PRODUCT_LIST_TYPES } from '../../enums/product-list-types';
 import AllGroceriesList from './AllGroceriesList/AllGroceriesList';
 import AllFavoritesList from './AllFavoritesList/AllFavoritesList';
 import { DeviceContext } from '../../contexts/device-context';
 import CartView from '../cart-view/CartView';
+import { manageCartInitialState, manageCartReducer } from '../reducers/manage-cart';
+import { ManageCartContext } from '../../contexts/manage-cart-context';
 
 
 function ProductList(): React.JSX.Element {
     const isMobile: boolean = useContext(DeviceContext);
+    const [cartState, cartDispatch] = useReducer(manageCartReducer, manageCartInitialState);
+    const reducerContextStateProvider = {
+        cartState,
+        cartDispatch,
+    }
+
     const [productListType, setProductListType] = useState(PRODUCT_LIST_TYPES.ALL_PRODUCTS);
     const [showMobileCart, setShowMobileCart] = useState(false)
 
@@ -45,7 +53,7 @@ function ProductList(): React.JSX.Element {
             <header className={`${styles.pageHeader} ${!mobileCartMode ? styles.headerFlexSpace : ''}`}>
                 {(mobileCartMode)
                     ? <>
-                        <button className={styles.mobileCartBackBUtton} onClick={toggleShowCart}>{'<=='}</button>
+                        <button className={styles.mobileCartBackButton} onClick={toggleShowCart}>{'<=='}</button>
                         <h1 className={styles.pageTitle}>
                             Cart
                         </h1>
@@ -65,15 +73,17 @@ function ProductList(): React.JSX.Element {
                     </>
                 }
             </header>
-            <div className={styles.pageContent}>
-                {mobileCartMode && cartView}
-                <div className={`${!isMobile ? styles.sidebarMargin : ''} ${(mobileCartMode) ? styles.hidden : ''}`}>
-                    {!isMobile && <div className={styles.sideBarWrapper}>
-                        {cartView}
-                    </div>}
-                    {listTypeByProductListType[productListType]}
+            <ManageCartContext.Provider value={reducerContextStateProvider}>
+                <div className={styles.pageContent}>
+                    {mobileCartMode && cartView}
+                    <div className={`${!isMobile ? styles.sidebarMargin : ''} ${(mobileCartMode) ? styles.hidden : ''}`}>
+                        {!isMobile && <div className={styles.sideBarWrapper}>
+                            {cartView}
+                        </div>}
+                        {listTypeByProductListType[productListType]}
+                    </div>
                 </div>
-            </div>
+            </ManageCartContext.Provider>
 
         </>
 	);

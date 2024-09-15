@@ -1,14 +1,94 @@
 .cartContainer {
     height: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     padding: 8px;
 }
 
 .reverseOrder {
-    flex-direction: column-reverse;
+    flex-direction: column;
 }
 
 .cartListWrapper {
-    min-height: 90%;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    padding-bottom: 24px;
+}
+
+.cartProductContainer {
+    width: 99%;
+    aspect-ratio: 3/1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    border: 1px solid black;
+    background-color: antiquewhite;
+}
+
+.productThumbnail {
+    height: 100%;
+    object-fit: cover;
+    flex: 2;
+}
+
+.dataBox {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4px;
+}
+
+.productName {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.stockManagementContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.hidden {
+    visibility: hidden !important;
+}
+
+.stockManagementButton {
+    all: unset;
+    font-weight: bolder;
+    font-size: 24px;
+}
+
+.stockManagementButton:hover {
+    cursor: pointer;
+}
+
+.stockText {
+    font-size: 24px;
+}
+
+.priceBox {
+    flex: 2;
+    font-size: 24px;
+    text-align: center;
+    margin: auto;
+}
+
+.checkoutButton {
+    margin: 16px 4px;
+    height: 40px;
+    background-color: blueviolet;
+}
+
+.checkoutButton:hover {
+    cursor: pointer;
+    filter: brightness(85%);
+}
+
+.checkoutButton:disabled {
+    background-color: gray;
 }

@@ -2,6 +2,7 @@
     max-width: 250px;
     height: 250px;
     margin: 16px;
+    background-color: antiquewhite;
     border: 2px solid black;
     border-radius: 4px;
 }
@@ -12,4 +13,92 @@
     object-fit: cover;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
+}
+
+.topInfoContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50%;
+}
+
+.leftTopInfoContainer {
+    flex: 3;
+    display: inline-flex;
+    flex-flow: column nowrap;
+    padding: 8px;
+}
+
+.rightTopInfoContainer {
+    flex: 1;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    padding: 8px;
+}
+
+.productName {
+    flex-shrink: 1;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.productDescription {
+    font-size: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+            line-clamp: 4; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stockLeftText {
+    font-size: 18px;
+}
+
+.bottomContent {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.centerBottomContent {
+    justify-content: center;
+}
+
+.stockLeftText {
+    margin: 4px 8px;
+}
+
+.bottomButtonsContainer {
+    margin: 0px 4px;
+}
+
+.bottomButtom {
+    padding: 6px;
+    margin: 0px 1px;
+}
+
+.bottomButtom:hover {
+    cursor: pointer;
+    filter: brightness(85%);
+}
+
+.bottomButtom:disabled {
+    background-color: gray;
+}
+
+.addToCartButton {
+    background-color: chocolate;
+}
+
+.addToFavButton {
+    background-color: gold;
+}
+
+.unFavButton {
+    background-color: red;
 }
