@@ -3,9 +3,14 @@ import Product from "../interfaces/Product";
 import PartialProduct from "../types/PartialProduct";
 import objectToUrlParams from "../../helpers/object-to-url-params";
 import { CheckoutDTO } from "../interfaces/CheckOutDTO";
+import axiosRetry from 'axios-retry';
 
 const BASE_URL = 'http://localhost:3000'; // In a real scenario, here we would have a handler for env configs
 export const PRODUCTS_PER_PAGE = 20;
+
+axiosRetry(axios, {
+	retries: 3,
+});
 
 const getGroceries = async (page: number, queryParams?: PartialProduct): Promise<Product[]> => {
 	let queryString = '';
